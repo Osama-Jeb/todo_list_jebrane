@@ -57,7 +57,7 @@ const addTask = (btn) => {
                         <div>
                         <button class="icon"><i class="done fa-solid fa-check" style="color: #00b72e;"></i></button>
 
-                        <button class="icon"><i class="modify fa-sharp fa-light fa-pen" style="color: #2222ff;"></i></button>
+                        <button class="icon"><i class="modify fa-solid fa-pen" style="color: #2700df;"></i></button>
 
                         <button class="icon"><i class="down fa-solid fa-arrow-down" style="color: #000000;"></i></button>
 
@@ -87,12 +87,20 @@ const erase = (btn) => {
 const modify = (btn) => {
     // select the text content we want to change
     let change = prompt("new task: ");
+    btn.parentElement.parentElement.previousElementSibling.textContent = change;
 }
 
 const down = (btn) => {
-    let task = btn.parentElement.parentElement.parentElement;
+    let task = btn.parentElement.parentElement.parentElement.parentElement;
     if (task.nextElementSibling != null){
         task.nextElementSibling.insertAdjacentElement("afterend", task);
+    }
+}
+
+const up = (btn) => {
+    let task = btn.parentElement.parentElement.parentElement.parentElement;
+    if (task.previousElementSibling != null) {
+        task.previousElementSibling.insertAdjacentElement("beforebegin", task);
     }
 }
 
@@ -113,16 +121,16 @@ document.onclick = function (event) {
         case "delete":
             erase(target);
             break;
+        case "modify":
+            modify(target);
+            break;
+        case "up":
+            up(target);
+            break;
         case "down":
             down(target);
             break;
     }
 }
-
-
-// document.onclick = function (event) {
-//     let target = event.target;
-//     console.log(target);
-// }
 
 
