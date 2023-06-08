@@ -12604,4 +12604,11 @@ textarea.form-control-lg {
   width: 50%;
 }
 
+.list-item {
+  width: 20vw;
+}
+.list-item .add-task {
+  width: 90%;
+}
+
 /*# sourceMappingURL=app.css.map */
