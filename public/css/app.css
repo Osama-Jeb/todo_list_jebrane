@@ -12691,10 +12691,13 @@ textarea.form-control-lg {
   width: 50%;
 }
 
-.list-item {
+.all-lists {
+  width: fit-content;
+}
+.all-lists .list-item {
   width: 30vw;
 }
-.list-item .add-task {
+.all-lists .list-item .add-task {
   width: 90%;
 }
 

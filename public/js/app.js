@@ -56,16 +56,15 @@ const addTask = (btn) => {
 
     // create my div for the task
     let newDiv = document.createElement("div");
-    newDiv.setAttribute("class", "bg-light");
+    newDiv.setAttribute("class", "draggable bg-light");
     // give the possibility of dragging
     newDiv.setAttribute("draggable", true);
 
-    //todo FIX THE DRAGGABLE CLASS AND ATTRIBUTES FOR DRAGGING
     // task items : 
     // paragraph with textContent as our inputted task name
     // buttons that contain icons that will allow us to modify our tasks
     newDiv.innerHTML += `
-                        <div class="draggable d-flex justify-content-between p-2">
+                        <div class="d-flex justify-content-between p-2">
 
                         <p class="m-0">${taskInput}</p>
 
