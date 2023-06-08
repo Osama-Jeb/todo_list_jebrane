@@ -5,6 +5,7 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -38,6 +39,7 @@
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
   --bs-oussama: #110798;
+  --bs-gray: #818181;
   --bs-primary-rgb: 13, 110, 253;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
@@ -47,6 +49,7 @@
   --bs-light-rgb: 248, 249, 250;
   --bs-dark-rgb: 33, 37, 41;
   --bs-oussama-rgb: 17, 7, 152;
+  --bs-gray-rgb: 129, 129, 129;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
@@ -3206,6 +3209,23 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #110798;
 }
 
+.btn-gray {
+  --bs-btn-color: #000;
+  --bs-btn-bg: #818181;
+  --bs-btn-border-color: #818181;
+  --bs-btn-hover-color: #000;
+  --bs-btn-hover-bg: #949494;
+  --bs-btn-hover-border-color: #8e8e8e;
+  --bs-btn-focus-shadow-rgb: 110, 110, 110;
+  --bs-btn-active-color: #000;
+  --bs-btn-active-bg: #9a9a9a;
+  --bs-btn-active-border-color: #8e8e8e;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #000;
+  --bs-btn-disabled-bg: #818181;
+  --bs-btn-disabled-border-color: #818181;
+}
+
 .btn-outline-primary {
   --bs-btn-color: #0d6efd;
   --bs-btn-border-color: #0d6efd;
@@ -3356,6 +3376,23 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #110798;
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #110798;
+  --bs-gradient: none;
+}
+
+.btn-outline-gray {
+  --bs-btn-color: #818181;
+  --bs-btn-border-color: #818181;
+  --bs-btn-hover-color: #000;
+  --bs-btn-hover-bg: #818181;
+  --bs-btn-hover-border-color: #818181;
+  --bs-btn-focus-shadow-rgb: 129, 129, 129;
+  --bs-btn-active-color: #000;
+  --bs-btn-active-bg: #818181;
+  --bs-btn-active-border-color: #818181;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #818181;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #818181;
   --bs-gradient: none;
 }
 
@@ -4980,6 +5017,15 @@ textarea.form-control-lg {
   color: #080349;
 }
 
+.alert-gray {
+  --bs-alert-color: #4d4d4d;
+  --bs-alert-bg: #e6e6e6;
+  --bs-alert-border-color: #d9d9d9;
+}
+.alert-gray .alert-link {
+  color: #3e3e3e;
+}
+
 @keyframes progress-bar-stripes {
   0% {
     background-position-x: 1rem;
@@ -5396,6 +5442,20 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #0a045b;
   border-color: #0a045b;
+}
+
+.list-group-item-gray {
+  color: #4d4d4d;
+  background-color: #e6e6e6;
+}
+.list-group-item-gray.list-group-item-action:hover, .list-group-item-gray.list-group-item-action:focus {
+  color: #4d4d4d;
+  background-color: #cfcfcf;
+}
+.list-group-item-gray.list-group-item-action.active {
+  color: #fff;
+  background-color: #4d4d4d;
+  border-color: #4d4d4d;
 }
 
 .btn-close {
@@ -6909,6 +6969,11 @@ textarea.form-control-lg {
   background-color: RGBA(17, 7, 152, var(--bs-bg-opacity, 1)) !important;
 }
 
+.text-bg-gray {
+  color: #000 !important;
+  background-color: RGBA(129, 129, 129, var(--bs-bg-opacity, 1)) !important;
+}
+
 .link-primary {
   color: #0d6efd !important;
 }
@@ -6970,6 +7035,13 @@ textarea.form-control-lg {
 }
 .link-oussama:hover, .link-oussama:focus {
   color: #0e067a !important;
+}
+
+.link-gray {
+  color: #818181 !important;
+}
+.link-gray:hover, .link-gray:focus {
+  color: #9a9a9a !important;
 }
 
 .ratio {
@@ -7436,6 +7508,11 @@ textarea.form-control-lg {
 .border-oussama {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-oussama-rgb), var(--bs-border-opacity)) !important;
+}
+
+.border-gray {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-gray-rgb), var(--bs-border-opacity)) !important;
 }
 
 .border-white {
@@ -8625,6 +8702,11 @@ textarea.form-control-lg {
   color: rgba(var(--bs-oussama-rgb), var(--bs-text-opacity)) !important;
 }
 
+.text-gray {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-gray-rgb), var(--bs-text-opacity)) !important;
+}
+
 .text-black {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
@@ -8719,6 +8801,11 @@ textarea.form-control-lg {
 .bg-oussama {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-oussama-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-gray {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-gray-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .bg-black {
@@ -12605,10 +12692,19 @@ textarea.form-control-lg {
 }
 
 .list-item {
-  width: 20vw;
+  width: 30vw;
 }
 .list-item .add-task {
   width: 90%;
+}
+
+.icon {
+  background: transparent;
+  border: none;
+}
+
+.finished {
+  background-color: #0f0;
 }
 
 /*# sourceMappingURL=app.css.map */

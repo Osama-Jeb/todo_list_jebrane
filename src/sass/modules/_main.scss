@@ -1,7 +1,16 @@
 .list-item{
-    width: 20vw;
-    
+    width: 30vw;
+
     .add-task{
         width: 90%;
     }
+}
+
+.icon{
+    background: transparent;
+    border: none;
+}
+
+.finished{
+    background-color: #0f0;
 }
