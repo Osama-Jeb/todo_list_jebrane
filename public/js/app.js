@@ -3,19 +3,21 @@ let btnList = document.querySelector("#add-list");
 let allListDiv = document.querySelector(".all-lists")
 
 const addList = () => {
-    // check if the input value is different than 0
+    // remove any empty space
+    createInput.value = createInput.value.trim();
+    // only apply if there's no empty input
     if (createInput.value != "") {
-        //create tags for the column
+        // create my tags that will form the new list
         let divParent = document.createElement("div");
         let divChild = document.createElement("div");
         let button = document.createElement("button");
         let h2 = document.createElement("h2");
-        //add class to tags
+
+        // add classes to my tags
         divParent.setAttribute(
             "class",
             "zone list-item bg-danger rounded-3 align-items-center ms-4 me-4 p-4"
         )
-
         h2.setAttribute("class", "text-white mb-4")
         button.setAttribute("class", "add-task btn btn-oussama mb-4 w-100");
         divChild.setAttribute("class", "d-flex flex-column gap-2");
@@ -24,7 +26,7 @@ const addList = () => {
         h2.innerHTML = createInput.value;
         button.innerHTML = "Add a task";
 
-        //append to the column
+        //append everything to the column
         allListDiv.append(divParent);
         divChild.append(button)
         divParent.append(h2, divChild);
@@ -33,6 +35,7 @@ const addList = () => {
     }
 }
 
+// call for the addList function using the button click or pressing Enter
 btnList.addEventListener("click", addList);
 createInput.addEventListener("keypress", (e) => {
     if (e.code == "Enter") {
@@ -41,14 +44,26 @@ createInput.addEventListener("keypress", (e) => {
 })
 
 
+// adding a task
 const addTask = (btn) => {
-    let taskInput = prompt("fuck: ");
+    // ask for task name and verify it's not empty
+    let taskInput = prompt("Add a task: ").trim();
 
+    while(taskInput == ""){
+        taskInput = prompt("Add a task: ").trim();
+    }
+
+
+    // create my div for the task
     let newDiv = document.createElement("div");
     newDiv.setAttribute("class", "bg-light");
+    // give the possibility of dragging
     newDiv.setAttribute("draggable", true);
-    //todo add the up down done delete functions from other file
-    //todo add THE MODIFY THINGY
+
+    //todo FIX THE DRAGGABLE CLASS AND ATTRIBUTES FOR DRAGGING
+    // task items : 
+    // paragraph with textContent as our inputted task name
+    // buttons that contain icons that will allow us to modify our tasks
     newDiv.innerHTML += `
                         <div class="draggable d-flex justify-content-between p-2">
 
@@ -65,12 +80,11 @@ const addTask = (btn) => {
 
                         <button class="icon"><i class="delete fa-solid fa-trash" style="color: #ff0000;"></i></button>
                         </div>
+
                     </div>
                     `
-
+    // add our entire new div to the task list
     btn.parentElement.insertAdjacentElement("afterend", newDiv);
-
-
 }
 
 
@@ -91,26 +105,32 @@ const modify = (btn) => {
 }
 
 const down = (btn) => {
+    // Select the div that contains the task and everything
     let task = btn.parentElement.parentElement.parentElement.parentElement;
+    // check if there's an element after it or not
     if (task.nextElementSibling != null){
+        // put the div after the next element
         task.nextElementSibling.insertAdjacentElement("afterend", task);
     }
 }
 
 const up = (btn) => {
+    // select the div that contains the task and everything
     let task = btn.parentElement.parentElement.parentElement.parentElement;
+    // check if there's an element before it or not
     if (task.previousElementSibling != null) {
+        // put the div before the previous element
         task.previousElementSibling.insertAdjacentElement("beforebegin", task);
     }
 }
 
 
-
+// click events
 document.onclick = function (event) {
+    // select what i'm clicking on
     let target = event.target;
-    console.log(target);
-    let task = target.parentElement.parentElement.parentElement;
-    console.log(task);
+    // check the first class of our targeted element
+    // if it has a certain class then call for the appropriate function
     switch (target.classList[0]) {
         case "add-task":
             addTask(target);
