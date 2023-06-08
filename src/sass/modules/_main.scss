@@ -3,6 +3,14 @@
 
     .list-item {
         width: 30vw;
+        .deleteList {
+            color: red;
+            background-color: transparent;
+            border: none;
+            font-weight: bolder;
+            margin-left: 20vw;      
+            font-size: x-large;
+        }
 
         .add-task {
             width: 90%;

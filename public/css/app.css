@@ -12697,6 +12697,14 @@ textarea.form-control-lg {
 .all-lists .list-item {
   width: 30vw;
 }
+.all-lists .list-item .deleteList {
+  color: red;
+  background-color: transparent;
+  border: none;
+  font-weight: bolder;
+  margin-left: 20vw;
+  font-size: x-large;
+}
 .all-lists .list-item .add-task {
   width: 90%;
 }
