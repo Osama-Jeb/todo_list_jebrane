@@ -10,33 +10,37 @@ const addList = () => {
         // create my tags that will form the new list
         let divParent = document.createElement("div");
         let divChild = document.createElement("div");
-        // button for adding tasks later
-        let button = document.createElement("button");
 
+        // button for adding tasks later
+        let btnAdd = document.createElement("button");
+        // div to fix the UpDown problem: tasks went waay up
+        let divTasks = document.createElement("div")
+        
         // button for delete the list
         let btnDelete = document.createElement("button");
         let h2 = document.createElement("h2");
-
+        
         // add classes to my tags
         divParent.setAttribute(
             "class",
             "zone list-item bg-primary rounded-3 align-items-center ms-4 me-4 p-4"
-        )
+            )
+            
+            h2.setAttribute("class", "text-white mb-4")
+            btnAdd.setAttribute("class", "add-task btn btn-oussama mb-4 w-100");
+            btnDelete.setAttribute("class", "deleteList")
+            divChild.setAttribute("class", "d-flex flex-column gap-2");
+            divTasks.setAttribute("class", "taskHolder");
 
-        h2.setAttribute("class", "text-white mb-4")
-        button.setAttribute("class", "add-task btn btn-oussama mb-4 w-100");
-        btnDelete.setAttribute("class", "deleteList")
-        divChild.setAttribute("class", "d-flex flex-column gap-2");
-
-        //add text to the button and title
+        //add text to the buttons and title
         h2.innerHTML = createInput.value;
-        button.innerHTML = "Add a task";
+        btnAdd.innerHTML = "Add a task";
         btnDelete.innerHTML = "X"
 
         //append everything to the column
         allListDiv.append(divParent);
-        // todo : div sibling to the button to fix the UpDown problem
-        divChild.append(button)
+
+        divChild.append(btnAdd, divTasks)
         divParent.append(btnDelete, h2, divChild);
         //reset the input value
         createInput.value = "";
@@ -51,7 +55,9 @@ createInput.addEventListener("keypress", (e) => {
     }
 })
 
+// delete the list
 const deleteList = (btn) => {
+    // select the parent of the delete button and remove it 
     btn.parentElement.remove();
 }
 
@@ -94,8 +100,8 @@ const addTask = (btn) => {
 
                     </div>
                     `
-    // add our entire new div to the task list
-    btn.parentElement.insertAdjacentElement("afterend", newDiv);
+    // add our entire new div to the task list in the divTasks div
+    btn.nextElementSibling.insertAdjacentElement("afterbegin", newDiv);
 }
 
 
