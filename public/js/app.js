@@ -1,6 +1,22 @@
 let createInput = document.querySelector("#create-list");
 let btnList = document.querySelector("#add-list");
-let allListDiv = document.querySelector(".all-lists")
+let allListDiv = document.querySelector(".all-lists");
+
+// added this for fun
+// every new list created will have a random background
+const randBg = (tag) => {
+    let options = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+    let bg = "#";
+    // can put 3 or 6: 3 just looks better in color selection
+    for (let index = 0; index < 3; index++) {
+        // pick a random number
+        let rand = Math.floor(Math.random() * options.length);
+        // concatenate the equivalent item to bg from our options
+        bg += options[rand]
+    }
+    // change the background
+    tag.style.backgroundColor = bg;
+}
 
 const addList = () => {
     // remove any empty space
@@ -23,17 +39,19 @@ const addList = () => {
         // add classes to my tags
         divParent.setAttribute(
             "class",
-            "list-item bg-primary rounded-3 align-items-center ms-4 me-4 p-4"
+            "list-item rounded-3 text-center align-items-center ms-4 me-4 p-4"
         )
 
-        h2.setAttribute("class", "text-white mb-4")
+        randBg(divParent);
+
+        h2.setAttribute("class", "bg-light fw-bold mb-4")
         btnAdd.setAttribute("class", "add-task btn btn-oussama mb-4 w-100");
         btnDelete.setAttribute("class", "deleteList")
         divChild.setAttribute("class", "d-flex flex-column gap-2");
         divTasks.setAttribute("class", "zone taskHolder");
 
         //add text to the buttons and title
-        h2.innerHTML = createInput.value;
+        h2.innerHTML = createInput.value.toUpperCase();
         btnAdd.innerHTML = "Add a task";
         btnDelete.innerHTML = "X"
 
@@ -141,7 +159,7 @@ const dragDrop = (item) => {
     // update our drop zones
     let zones = document.querySelectorAll(".zone");
     // when dragging starts
-    // // let draggables = document.querySelectorAll(".draggable");
+    item.style.cursor = "grab"
     item.addEventListener("dragstart", () => {
         // make our item opaque
         item.classList.add("dragging");
