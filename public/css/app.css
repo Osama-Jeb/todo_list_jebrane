@@ -12715,7 +12715,18 @@ textarea.form-control-lg {
 }
 
 .finished {
-  background-color: #0f0;
+  background-color: #0f0 !important;
+}
+
+.draggable {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: white;
+}
+
+.dragging {
+  opacity: 0.5;
 }
 
 /*# sourceMappingURL=app.css.map */

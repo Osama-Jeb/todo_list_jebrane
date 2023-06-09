@@ -6,7 +6,7 @@
 
 
 // for colors
-$custom-color:(
+$custom-color: (
     "oussama" : #110798,
     "gray" : #818181,
 );
@@ -17,11 +17,11 @@ $theme-colors: map-merge($theme-colors, $custom-color);
 // spacing
 
 $custom-spacers: (
-        6: $spacer * 3.5,
-        7: $spacer * 4,
-        8: $spacer * 5,
-        9: $spacer * 6,
-        10: $spacer * 10
+    6: $spacer * 3.5,
+    7: $spacer * 4,
+    8: $spacer * 5,
+    9: $spacer * 6,
+    10: $spacer * 10
 );
 
 $spacers: map-merge($spacers, $custom-spacers);
