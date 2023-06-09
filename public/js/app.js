@@ -23,14 +23,14 @@ const addList = () => {
         // add classes to my tags
         divParent.setAttribute(
             "class",
-            "zone list-item bg-primary rounded-3 align-items-center ms-4 me-4 p-4"
+            "list-item bg-primary rounded-3 align-items-center ms-4 me-4 p-4"
         )
 
         h2.setAttribute("class", "text-white mb-4")
         btnAdd.setAttribute("class", "add-task btn btn-oussama mb-4 w-100");
         btnDelete.setAttribute("class", "deleteList")
         divChild.setAttribute("class", "d-flex flex-column gap-2");
-        divTasks.setAttribute("class", "taskHolder");
+        divTasks.setAttribute("class", "zone taskHolder");
 
         //add text to the buttons and title
         h2.innerHTML = createInput.value;
@@ -138,9 +138,10 @@ const up = (btn) => {
 }
 
 const dragDrop = (item) => {
-    // when dragging starts
+    // update our drop zones
     let zones = document.querySelectorAll(".zone");
-    let draggables = document.querySelectorAll(".draggable");
+    // when dragging starts
+    // // let draggables = document.querySelectorAll(".draggable");
     item.addEventListener("dragstart", () => {
         // make our item opaque
         item.classList.add("dragging");

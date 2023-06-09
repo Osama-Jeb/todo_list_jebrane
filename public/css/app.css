@@ -12729,4 +12729,8 @@ textarea.form-control-lg {
   opacity: 0.5;
 }
 
+.taskHolder {
+  min-height: 80px;
+}
+
 /*# sourceMappingURL=app.css.map */
