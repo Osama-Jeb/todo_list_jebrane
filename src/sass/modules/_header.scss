@@ -1,16 +1,20 @@
-header{
-    .create {
-        width: 50%;
-        #create-list{
-            margin: 5px;
-            border: none;
-        }
-        #create-list:focus{
-            outline: none;
-        }
-        #add-list{
-            margin: 5px;
-            border: none;
+body{
+    //todo if theres time: add a background image for style
+
+    header{
+        .create {
+            width: 50%;
+            #create-list{
+                margin: 5px;
+                border: none;
+            }
+            #create-list:focus{
+                outline: none;
+            }
+            #add-list{
+                margin: 5px;
+                border: none;
+            }
         }
     }
 }

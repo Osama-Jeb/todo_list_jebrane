@@ -12687,17 +12687,17 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-header .create {
+body header .create {
   width: 50%;
 }
-header .create #create-list {
+body header .create #create-list {
   margin: 5px;
   border: none;
 }
-header .create #create-list:focus {
+body header .create #create-list:focus {
   outline: none;
 }
-header .create #add-list {
+body header .create #add-list {
   margin: 5px;
   border: none;
 }
@@ -12742,6 +12742,10 @@ header .create #add-list {
 
 .taskHolder {
   min-height: 80px;
+}
+
+.hide {
+  display: none;
 }
 
 /*# sourceMappingURL=app.css.map */

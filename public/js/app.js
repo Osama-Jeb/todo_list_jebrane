@@ -2,7 +2,7 @@ let createInput = document.querySelector("#create-list");
 let btnList = document.querySelector("#add-list");
 let allListDiv = document.querySelector(".all-lists");
 
-// added this for fun
+//~ added this for fun
 // every new list created will have a random background
 const randBg = (tag) => {
     let options = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
@@ -18,6 +18,8 @@ const randBg = (tag) => {
     tag.style.backgroundColor = bg;
 }
 
+
+//!!!!! ADDING A NEW LIST
 const addList = () => {
     // remove any empty space
     createInput.value = createInput.value.trim();
@@ -31,6 +33,9 @@ const addList = () => {
         let btnAdd = document.createElement("button");
         // div to fix the UpDown problem: tasks went waay up
         let divTasks = document.createElement("div")
+
+        // div for the select button
+        let divSelect = document.createElement("div");
 
         // button for delete the list
         let btnDelete = document.createElement("button");
@@ -53,16 +58,31 @@ const addList = () => {
         //add text to the buttons and title
         h2.innerHTML = createInput.value.toUpperCase();
         btnAdd.innerHTML = "Add a task";
-        btnDelete.innerHTML = "X"
+        btnDelete.innerHTML = "X";
+
+        // the div will hold the select button and it's option
+        divSelect.innerHTML += `
+            <select class="rounded-pill p-1 border-0">
+                <option class="all">All</option>
+                <option class="validated">Done</option>
+                <option class="unValidated">Not done</option>
+            </select>
+        `
 
         //append everything to the column
         allListDiv.append(divParent);
 
-        divChild.append(btnAdd, divTasks)
+        divChild.append(divSelect, btnAdd, divTasks)
         divParent.append(btnDelete, h2, divChild);
         //reset the input value
         createInput.value = "";
     }
+}
+
+//!!!! delete a list
+const deleteList = (btn) => {
+    // select the parent of the delete button and remove it 
+    btn.parentElement.remove();
 }
 
 // call for the addList function using the button click or pressing Enter
@@ -73,14 +93,50 @@ createInput.addEventListener("keypress", (e) => {
     }
 })
 
-// delete the list
-const deleteList = (btn) => {
-    // select the parent of the delete button and remove it 
-    btn.parentElement.remove();
+
+//!!!!! THE SELECT FUNCTIONS
+// only showing the validated/done tasks
+const val = (btn) => {
+    // select the div that will hold all the tasks
+    let children = btn.parentElement.parentElement.nextElementSibling.nextElementSibling.children;
+    // loop through them one by one (forEach sucks)
+    for (let index = 0; index < children.length; index++) {
+        let element = children[index];
+        // if the element does not have "finished" in it's className
+        if (!element.className.includes("finished")) {
+            // hide it
+            element.classList.add("hide");
+        } else {
+            // make sure if it has "finished" to not have "hide" also
+            element.classList.remove("hide");
+        }
+    }
+}
+
+// Almost the same as above. Hide the tasks that have "finished" in their className 
+const unVal = (btn) => {
+    let children = btn.parentElement.parentElement.nextElementSibling.nextElementSibling.children;
+    for (let index = 0; index < children.length; index++) {
+        let element = children[index];
+        if (element.className.includes("finished")) {
+            element.classList.add("hide");
+        } else {
+            element.classList.remove("hide");
+        }
+    }
+}
+
+// Reset: remove the class "hide" from all elements
+const all = (btn) => {
+    let children = btn.parentElement.parentElement.nextElementSibling.nextElementSibling.children;
+    for (let index = 0; index < children.length; index++) {
+        let element = children[index];
+        element.classList.remove("hide");
+    }
 }
 
 
-// adding a task
+//!!!! ADDING A TASK
 const addTask = (btn) => {
     // ask for task name and verify it's not empty
     let taskInput = prompt("Add a task: ").trim();
@@ -88,7 +144,6 @@ const addTask = (btn) => {
     while (taskInput == "") {
         taskInput = prompt("Add a task: ").trim();
     }
-
 
     // create my div for the task
     let newDiv = document.createElement("div");
@@ -118,7 +173,7 @@ const addTask = (btn) => {
     btn.nextElementSibling.insertAdjacentElement("afterbegin", newDiv);
 }
 
-
+//!!!!! FUNCTION FOR THE ICONS
 const done = (btn) => {
     // select the div that contains the task
     btn.parentElement.parentElement.parentElement.classList.toggle("finished");
@@ -155,6 +210,9 @@ const up = (btn) => {
     }
 }
 
+
+//!!!! THE DRAG AND DROP 
+////(I hate this AND I love it at the same time)
 const dragDrop = (item) => {
     // update our drop zones
     let zones = document.querySelectorAll(".zone");
@@ -185,11 +243,14 @@ const dragDrop = (item) => {
     })
 }
 
-// click events
+
+//!!! Click Events
+////(Life saver. Thank god I found this lol.)
+// I wrote my classes so that the first one is the most important for this reason
 document.onclick = function (event) {
     // select what i'm clicking on
     let target = event.target;
-    console.log(target.classList[0]);
+    console.log(target.className);
     // check the first class of our targeted element
     // if it has a certain class then call for the appropriate function
     switch (target.classList[0]) {
@@ -216,7 +277,14 @@ document.onclick = function (event) {
         case "draggable":
             dragDrop(target);
             break;
+        case "validated":
+            val(target);
+            break;
+        case "unValidated":
+            unVal(target);
+            break;
+        case "all":
+            all(target);
+            break;
     }
 }
-
-
