@@ -106,10 +106,10 @@ const addTask = (btn) => {
                         <button class="icon"><i class="done fa-solid fa-check" style="color: #00b72e;"></i></button>
 
                         <button class="icon"><i class="modify fa-solid fa-pen" style="color: #2700df;"></i></button>
+                        
+                        <button class="icon"><i class="up fa-solid fa-arrow-up" style="color: #000000;"></i></button>
 
                         <button class="icon"><i class="down fa-solid fa-arrow-down" style="color: #000000;"></i></button>
-
-                        <button class="icon"><i class="up fa-solid fa-arrow-up" style="color: #000000;"></i></button>
 
                         <button class="icon"><i class="delete fa-solid fa-trash" style="color: #ff0000;"></i></button>
                         </div>

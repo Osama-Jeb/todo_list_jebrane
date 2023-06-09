@@ -12690,6 +12690,17 @@ textarea.form-control-lg {
 header .create {
   width: 50%;
 }
+header .create #create-list {
+  margin: 5px;
+  border: none;
+}
+header .create #create-list:focus {
+  outline: none;
+}
+header .create #add-list {
+  margin: 5px;
+  border: none;
+}
 
 .all-lists {
   width: fit-content;
