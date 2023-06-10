@@ -62,7 +62,7 @@ const addList = () => {
 
         // the div will hold the select button and it's option
         divSelect.innerHTML += `
-            <select class="rounded-pill p-1 border-0">
+            <select class="rounded-pill text-center px-3 border-0">
                 <option class="all">All</option>
                 <option class="validated">Done</option>
                 <option class="unValidated">Not done</option>
@@ -86,7 +86,6 @@ const deleteList = (btn) => {
 }
 
 // call for the addList function using the button click or pressing Enter
-btnList.addEventListener("click", addList);
 createInput.addEventListener("keypress", (e) => {
     if (e.code == "Enter") {
         addList();
@@ -158,15 +157,25 @@ const addTask = (btn) => {
                         <p class="m-0">${taskInput}</p>
 
                         <div>
-                        <button class="icon"><i class="done fa-solid fa-check" style="color: #00b72e;"></i></button>
+                            <button class="icon">
+                                <i class="done fa-solid fa-check" style="color: #00b72e;"></i>
+                            </button>
 
-                        <button class="icon"><i class="modify fa-solid fa-pen" style="color: #2700df;"></i></button>
-                        
-                        <button class="icon"><i class="up fa-solid fa-arrow-up" style="color: #000000;"></i></button>
+                            <button class="icon">
+                                <i class="modify fa-solid fa-pen" style="color: #2700df;"></i>
+                            </button>
+                            
+                            <button class="icon">
+                                <i class="up fa-solid fa-arrow-up" style="color: #000000;"></i>
+                            </button>
 
-                        <button class="icon"><i class="down fa-solid fa-arrow-down" style="color: #000000;"></i></button>
+                            <button class="icon">
+                                <i class="down fa-solid fa-arrow-down" style="color: #000000;"></i>
+                            </button>
 
-                        <button class="icon"><i class="delete fa-solid fa-trash" style="color: #ff0000;"></i></button>
+                            <button class="icon">
+                                <i class="delete fa-solid fa-trash" style="color: #ff0000;"></i>
+                            </button>
                         </div>
                     `
     // add our entire new div to the task list in the divTasks div
@@ -186,7 +195,11 @@ const erase = (btn) => {
 
 const modify = (btn) => {
     // select the text content we want to change
-    let change = prompt("new task: ");
+    let change = prompt("new task: ").trim();
+    // verify if empty string
+    while (change == "") {
+        change = prompt("It's an empty string. Please write something: ");
+    }
     btn.parentElement.parentElement.previousElementSibling.textContent = change;
 }
 
@@ -254,14 +267,23 @@ document.onclick = function (event) {
     // check the first class of our targeted element
     // if it has a certain class then call for the appropriate function
     switch (target.classList[0]) {
+        //^^ Creating or Deleting a list
+        case "add-list":
+            addList();
+            break;
+        case "deleteList":
+            deleteList(target);
+            break;
+        //^^ Creating or Deleting a task
         case "add-task":
             addTask(target);
             break;
-        case "done":
-            done(target);
-            break;
         case "delete":
             erase(target);
+            break;
+        //^^ Modifying Tasks
+        case "done":
+            done(target);
             break;
         case "modify":
             modify(target);
@@ -272,10 +294,9 @@ document.onclick = function (event) {
         case "down":
             down(target);
             break;
-        case "deleteList":
-            deleteList(target);
-        case "draggable":
-            dragDrop(target);
+        //^^ Selecting Tasks
+        case "all":
+            all(target);
             break;
         case "validated":
             val(target);
@@ -283,8 +304,9 @@ document.onclick = function (event) {
         case "unValidated":
             unVal(target);
             break;
-        case "all":
-            all(target);
+        //^^ THE DRAG AND DROP
+        case "draggable":
+            dragDrop(target);
             break;
     }
 }
