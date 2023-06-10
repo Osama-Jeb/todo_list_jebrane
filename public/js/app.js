@@ -150,6 +150,9 @@ const addTask = (btn) => {
 
     newDiv.setAttribute("class", "draggable");
     newDiv.setAttribute("draggable", true);
+    //* fix the double click and null issue
+    newDiv.setAttribute('onmouseover', 'dragDrop(this)');
+
     // task items : 
     // paragraph with textContent as our inputted task name
     // buttons that contain icons that will allow us to modify our tasks
@@ -225,7 +228,7 @@ const up = (btn) => {
 
 
 //!!!! THE DRAG AND DROP 
-////(I hate this AND I love it at the same time)
+////(I hate AND love this at the same time)
 const dragDrop = (item) => {
     // update our drop zones
     let zones = document.querySelectorAll(".zone");
@@ -303,10 +306,6 @@ document.onclick = function (event) {
             break;
         case "unValidated":
             unVal(target);
-            break;
-        //^^ THE DRAG AND DROP
-        case "draggable":
-            dragDrop(target);
             break;
     }
 }
